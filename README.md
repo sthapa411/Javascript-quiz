@@ -4,5 +4,5 @@ The goal of the homework was to create a quiz where the timer is set and each ti
 
 Challenge: The biggest challenge was to link the various element of the final quiz, such was getting high score, retreiving from local storage.
 
-![Screen Shot ](https://github.com/sthapa411/homework4.github.io/edit/master/Screenshot)
+![Screen Shot ](https://github.com/sthapa411/homework4.github.io/blob/master/Screenshot%20.png)
 
