@@ -14,14 +14,6 @@ var questions = [{
 	question: "6. Which software company developed JavaScript?",
 	choices: ["Mozilla", "Netscape", "Sun Microsystems", "Oracle"],
 	answer: "Netscape"
-}, {
-	question: "2. The condition in an if /else stament is enclosed within _______.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "curly brackets"
-}, {
-	question: "1. Commonly used data DO NOT include:",
-    choices: ["strings", "alerts", "numbers", "booleans"],
-    answer: "alerts"
 }];
 
 
@@ -29,7 +21,7 @@ var questions = [{
 
 var startBtn = document.getElementById("startBtn");
 var submitBtn = document.querySelector("button.submitBtn")
-var secondsLeft = (questions.length * 10 + 1);
+var secondsLeft = 60;
 var timerElement = document.getElementById("timer");
 var submitScoreElement = document.querySelector("#submit-score");
 var userScoreElement = document.getElementById("user-score");
@@ -50,7 +42,7 @@ function startTimer() {
     setTime();
 
     // create questions to display
-    makeQuestions();
+    generateQuestions();
 }
 
 function setTime() {
@@ -66,9 +58,10 @@ function setTime() {
     }, 1000);
 }
 
-function makeQuestions() {
+
+function generateQuestions() {
     questionNumber++;
-    answer = questions[questionNumber].answer
+    answer = questions[questionNumber].answer;
 
     questionHead.textContent = questions[questionNumber].question;
     answerChoices.innerHTML = "";
@@ -87,7 +80,7 @@ function makeQuestions() {
 function displayScore() {
     document.getElementById("quiz").classList.add('d-none');
     document.getElementById("submit-score").classList.remove('d-none');
-    userScoreElement.textContent = "FINAL SCORE: " + secondsLeft + ".";
+    userScoreElement.textContent = "Your Score: " + secondsLeft + ".";
 }
 
 // Event Listeners for Main Buttons
@@ -95,6 +88,8 @@ startBtn.addEventListener("click", startTimer);
 submitBtn.addEventListener("click", function (event) {
     event.stopPropagation();
     addScore();
+
+    window.location.href = 'highscore.html'
     
 });
 
@@ -131,16 +126,16 @@ answerChoices.addEventListener("click", function (event) {
     // evaluation of user's answer choices & feedback
     if (answer === event.target.textContent) {   
         pElement.innerHTML = "Correct!";
-        setTimeout(hideFeedback,1225);
+        setTimeout(hideFeedback, 1000);
         showFeedback();   
         
     } else {
         pElement.innerHTML = "Wrong!";
-        setTimeout(hideFeedback,1225);
+        setTimeout(hideFeedback,1000);
         secondsLeft = secondsLeft - 10;
         showFeedback();
     }    
-    makeQuestions();
+    generateQuestions();
 });
   // restart, clear choices, display scores
 
@@ -158,8 +153,8 @@ highScores.sort(function (a, b) {
 // displaying the scores
 for (var s = 0; s < highScores.length; s++) {
     var newLi = document.createElement("li")
-    newLi.textContent = highScores[s].name + " - " + highScores[s].score
-    scoreList.appendChild(newLi)
+    newLi.textContent = highScores[s].name + " - " + highScores[s].score;
+    scoreList.appendChild(newLi);
 }
 
 
