@@ -103,7 +103,7 @@ var newScore = {
     };
     // checking if there are scores in local storage first and take value
     //if not, making a blank array
-    var highScores = JSON.parse(localStorage.getItem("highScores") || "[]");
+    var highScores = JSON.parse(localStorage.getItem("newScore") || "[]");
     // pushing object into score array
     highScores.push(newScore)
     // turning objects into an array of strings + put it into local storage
@@ -161,9 +161,9 @@ for (var s = 0; s < highScores.length; s++) {
 // click handlers for restart and clearing scoreboard
 clearBtn.addEventListener("click", function () {
     localStorage.clear();
-    history.back()
+
 });
 restartBtn.addEventListener("click", function () {
-    history.back();
+    generateQuestions();
 });
 
